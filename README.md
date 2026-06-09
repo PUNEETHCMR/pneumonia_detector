@@ -51,6 +51,40 @@ python src\predict.py --model model\pneumonia_detector.h5 --image path\to\image.
 4. Railway sets `PORT` automatically, and `app.py` now reads it with `os.environ.get('PORT', 5000)`.
 5. Deploy the project and Railway will provide a public URL.
 
+## Deploy to Fly.io
+
+1. Install Fly CLI: https://fly.io/docs/getting-started/installing/
+2. Login:
+
+```bash
+fly auth login
+```
+
+3. Create or launch the app from the project root:
+
+```bash
+fly launch --name pneumonia-detector --no-deploy
+```
+
+4. When prompted, choose:
+   - `app` name: `pneumonia-detector` (or your preferred slug)
+   - `region`: nearest location
+   - `builder`: `Dockerfile`
+
+5. Deploy:
+
+```bash
+fly deploy
+```
+
+6. Open the app:
+
+```bash
+fly open
+```
+
+Fly uses the `Dockerfile` in this repository and sets `PORT` automatically.
+
 ## Dataset expectations
 
 The dataset directory should contain two subfolders:
